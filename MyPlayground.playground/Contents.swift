@@ -1,14 +1,19 @@
-//
-//  QuizBrain.swift
-//  Quizzler-iOS13
-//
-//  Created by Kartikeya Chauhan on 18/09/20.
-//  Copyright © 2020 The App Brewery. All rights reserved.
-//
+import UIKit
 
-import Foundation
 
-struct QuizBrain {
+struct Question {
+    let text: String
+    var answers: [String] = []
+    let correct: String
+    
+    init(q: String, a: [String], correctAnswer: String) {
+        text = q
+        answers.append(contentsOf: a)
+        correct = correctAnswer
+    }
+}
+
+struct quizBrain {
     let quiz = [
             Question(q: "Which is the largest organ in the human body?", a: ["Heart", "Skin", "Large Intestine"], correctAnswer: "Skin"),
             Question(q: "Five dollars is worth how many nickels?", a: ["25", "50", "100"], correctAnswer: "100"),
@@ -20,44 +25,15 @@ struct QuizBrain {
             Question(q: "What alcoholic drink is made from molasses?", a: ["Rum", "Whisky", "Gin"], correctAnswer: "Rum"),
             Question(q: "What type of animal was Harambe?", a: ["Panda", "Gorilla", "Crocodile"], correctAnswer: "Gorilla"),
             Question(q: "Where is Tasmania located?", a: ["Indonesia", "Australia", "Scotland"], correctAnswer: "Australia")
+
     ]
     
-    var questionNumber = 0
-    var score = 0
-    
-    func checkAnswer(_ userAnswer: String) -> Bool {
-        if userAnswer == quiz[questionNumber].correct {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func getQuestionText() -> String {
-        return quiz[questionNumber].text
-    }
-    
-    func getQuestionOptions() -> [String] {
-        return quiz[questionNumber].answers
-    }
-    
-    func getProgress() -> Float {
-        let progress = Float(questionNumber)/Float(quiz.count)
-        return progress
-    }
-    
-    mutating func nextQuestion(){ //mutating creates new structs, as structs are immutable
-        if questionNumber + 1 < quiz.count {
-            questionNumber += 1
-            score += 1
-        } else {
-            questionNumber = 0
-            score = 0
-        }
-    }
-    
-    func  getScore() -> Int {
-        return score
-    }
 
 }
+
+var quizzy = quizBrain()
+
+print(quizzy.quiz[0])
+
+
+ 
