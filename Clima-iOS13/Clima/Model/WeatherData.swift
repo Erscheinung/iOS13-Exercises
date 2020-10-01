@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct WeatherData: Decodable { //for JSON
+struct WeatherData: Codable { //Decodable for JSON; Codable is a type alias
     let name: String
     let main: Main
     let weather: [Weather]
 }
 
-struct Main: Decodable {
+struct Main: Codable {
     let temp: Double
 }
 
-struct Weather: Decodable {
+struct Weather: Codable {
     let description: String
     let id: Int
 }
